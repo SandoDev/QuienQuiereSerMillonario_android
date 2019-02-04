@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private LinearLayout L_Game;
     private TextView question, money, answer;
-    private Button button1, button2, button3, button4;
+    private Button button1, button2, button3, button4, call, fivefive, public0;
 
     private int countA, countB, countC, moneyWin;
     private String win;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ViewRunnigGame() {
-        L_Game.setVisibility(View.VISIBLE);
+        //L_Game.setVisibility(View.VISIBLE);
     }
 
     public void ToAsk_A() {
@@ -160,6 +160,9 @@ public class MainActivity extends AppCompatActivity {
         this.button2 = findViewById(R.id.button2);
         this.button3 = findViewById(R.id.button3);
         this.button4 = findViewById(R.id.button4);
+        this.call= findViewById(R.id.call);
+        this.public0= findViewById(R.id.public0);
+        this.fivefive = findViewById(R.id.fivefive);
     }//Los componentes son referenciados a los del activity
 
     private void InitializeComponents() {
@@ -243,6 +246,14 @@ public class MainActivity extends AppCompatActivity {
         } else if (view.getId() == R.id.button4) {
             String data = button4.getText().toString();
             Verify(data);
+        }
+
+        if(view.getId() == R.id.fivefive){
+            fivefive.setEnabled(false);
+        }else if(view.getId() == R.id.call){
+            call.setEnabled(false);
+        }else if(view.getId() == R.id.public0){
+            public0.setEnabled(false);
         }
     }//Funcion para el click del boton
 }
