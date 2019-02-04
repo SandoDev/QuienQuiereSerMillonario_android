@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/holo_blue_dark"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/L_wellcome"
@@ -32,7 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <TextView
                     android:id="@+id/wellcome"
@@ -40,7 +41,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Bienvenido al juego, Digite su nombre y presione continuar"
+                    android:text="Bienvenido al juego!\nDigite su nombre y presione continuar"
+                    android:textColor="@android:color/black"
                     android:textSize="24sp" />
 
                 <EditText
@@ -59,6 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
+                android:elevation="0dp"
+                android:onClick="onClick"
                 android:text="Continuar"
                 android:textSize="24sp" />
 
@@ -68,21 +72,46 @@
             android:id="@+id/L_instructions"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/T_instruc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="Para jugar: solo responde correctamente las preduntas en la pantalla, tendras 3 ayudas y acomularas dinero"
+                android:textColor="@android:color/black"
                 android:textSize="24sp" />
 
-            <Button
-                android:id="@+id/btn_run2"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="continuar"
-                android:textSize="24sp" />
+                android:layout_height="match_parent"
+                android:layout_weight="3.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="onClick"
+                    android:text="Volver"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btn_run2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:elevation="0dp"
+                    android:onClick="onClick"
+                    android:text="continuar"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
@@ -91,20 +120,93 @@
         android:id="@+id/L_end"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/Azul"
         android:orientation="vertical"
-        android:visibility="gone"></LinearLayout>
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/logo3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/T_end"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:onClick="onClick"
+            android:text="volver al menu"
+            android:textSize="24sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/L_progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/Azul"
         android:orientation="vertical"
-        android:visibility="gone"></LinearLayout>
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/logo2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/T_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_continue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:text="continuar"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn_end"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:text="finalizar juego"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/L_Game"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_dark"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -115,19 +217,28 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/player"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Concursando: "
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/answer"
+                    android:id="@+id/accumulated"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="respuesta"
-                    android:textSize="30sp" />
+                    android:text="Acumulado:"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/money"
@@ -135,24 +246,33 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="dinero"
-                    android:textSize="30sp" />
+                    android:text="0"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/L_answer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@android:color/holo_orange_light"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/question"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="1"
+                    android:background="@android:color/holo_blue_dark"
                     android:gravity="center"
                     android:text="question"
-                    android:textSize="36sp" />
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -170,6 +290,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.4"
+                android:background="@android:color/holo_purple"
                 android:orientation="horizontal">
 
                 <TextView
@@ -179,6 +300,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Ayudas:"
+                    android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
                 <Button
@@ -208,7 +330,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:onClick="onClick"
-                    android:text="llamada"
+                    android:text="llamar"
                     android:textSize="16sp" />
             </LinearLayout>
 
