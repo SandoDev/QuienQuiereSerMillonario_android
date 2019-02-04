@@ -16,7 +16,7 @@ public class GroupA {
     private String question2[] = {"¿Quién pintaba objetos de aspecto robusto e inflado?", "Botero", "Da Vinci", "Picasso", "Caravaggio"};
     private String question3[] = {"La cría de la rana recibe el nombre de:", "Renacuajo", "Ranica", "Ranacuajo", "Ranita"};
     private String question4[] = {"¿Cuántos grados tiene un ángulo llano?", "180", "45", "120", "90"};
-    private String question5[] = {"¿Cuántas regiones conforman la geografía colombiana?", "seis", "cinco", "cuatro", "siete"};
+    private String question5[] = {"¿Cuántas regiones conforman la geografía colombiana?", "Seis", "Cinco", "Cuatro", "Siete"};
     private String question6[] = {"¿Cuál fue el sistema político predominante en la Europa occidental de la Edad Media?", "Feudalismo", "Democracia", "Dictadura", "Capitalismo"};
     private String question7[] = {"¿Cómo murió Juana de Arco?", "Quemada en la hoguera", "Decapitada", "Envenenada", "Ahogada"};
     private String question8[] = {"¿Cuál de las siguientes palabras no se encuentra escrita correctamente?", "Jeneroso", "Jefe", "Gentío", "Germen"};

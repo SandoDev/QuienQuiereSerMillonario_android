@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
     private GroupB groupB;
     private GroupC groupC;
 
-    private LinearLayout L_Game, L_start, L_wellcome, L_instructions, L_answer, L_progress, L_end,L_public1,L_public2;
-    private TextView question, money, accumulated, T_instruc, player, T_progress, T_end,t_a,t_b,t_c,t_d;
+    private LinearLayout L_Game, L_start, L_wellcome, L_instructions, L_answer, L_progress, L_end, L_public1, L_public2;
+    private TextView question, money, accumulated, T_instruc, player, T_progress, T_end, t_a, t_b, t_c, t_d;
     private Button button1, button2, button3, button4, call, fivefive, public0, btn_run, btn_run2, btn_back, btn_end, continue0, btn_menu;
     private EditText name;
 
-    private int countA, countB, countC, moneyWin, countAsk, check;
+    private int countA, countB, countC, moneyWin, countAsk, check, moneyAux;
     private String win, namePlayer;
 
     @Override
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     public void ToAsk_C() {
         L_answer.setBackgroundColor(Color.RED);
         if (countC >= 5) {
-            ViewEnd();
+            ViewEnd(1);
         } else {
             String questions[] = groupC.GenerateQuestion();
             question.setText(questions[0]);
@@ -158,10 +158,6 @@ public class MainActivity extends AppCompatActivity {
             }
             countC++;
         }
-    }
-
-    private void inElse() {
-
     }
 
     private void StarGame() {
@@ -199,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void Verify(String data) {
         if (check >= 15) {
-            ViewEnd();
+            ViewEnd(1);
             return;
         }//se hace la condicion en esta parte ya que  no funciono en ToAsk_C
         ThreadButton();
@@ -225,11 +221,17 @@ public class MainActivity extends AppCompatActivity {
                 moneyWin = moneyWin * 2;
             }
 
+            if (moneyWin == 1000) {
+                moneyAux = 1000;
+            }else if(moneyWin == 32000){
+                moneyAux = 32000;
+            }
+
             money.setText("" + moneyWin);
             T_progress.setText("Respuesta correcta!!\n" +
                     namePlayer + " ha ganado: " + moneyWin);
         } else {
-            ViewEnd();
+            ViewEnd(0);
         }
     }//Verifica la respuesta
 
@@ -255,11 +257,15 @@ public class MainActivity extends AppCompatActivity {
         btns[2] = button3;
         btns[3] = button4;
 
-        for (int i = 0; i < 2; i++) {
+        int countButton=0;
+        for (int i = 0; i < 4; i++) {
             String data = btns[i].getText().toString();
             String data2 = data.substring(3, data.length());
-            if (!data2.equals(win)) {
-                btns[i].setEnabled(false);
+            if(countButton<2){
+                if (!data2.equals(win)) {
+                    btns[i].setEnabled(false);
+                    countButton++;
+                }
             }
         }
     }
@@ -346,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (view.getId() == R.id.btn_end) {
-            ViewEnd();
+            ViewEnd(1);
         } else if (view.getId() == R.id.btn_continue) {
             L_Game.setVisibility(View.VISIBLE);
             L_progress.setVisibility(View.GONE);
@@ -358,12 +364,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }//Funcion para el click del boton
 
-    private void ViewEnd() {
-        T_end.setText("¡Juego terminado!\n" + namePlayer +
-                " tus ganancias son: " + moneyWin);
+    private void ViewEnd(int endG) {
         L_progress.setVisibility(View.GONE);
         L_Game.setVisibility(View.GONE);
         L_end.setVisibility(View.VISIBLE);
+        if (endG==0) {
+            T_end.setText("¡Juego terminado!\n" + namePlayer +
+                    " tus ganancias son: " + moneyAux);
+        }else if(endG==1){
+            T_end.setText("¡Juego terminado!\n" + namePlayer +
+                    " tus ganancias son: " + moneyWin);
+        }
     }
 
     private void ReferenceComponents() {
@@ -407,7 +418,6 @@ public class MainActivity extends AppCompatActivity {
     }//Los componentes son referenciados a los del activity
 
     private void InitializeComponents() {
-
         fivefive.setEnabled(true);
         call.setEnabled(true);
         public0.setEnabled(true);
@@ -416,7 +426,7 @@ public class MainActivity extends AppCompatActivity {
         groupB = new GroupB();
         groupC = new GroupC();
 
-        countA = countB = countC = moneyWin = check = countAsk = 0;
+        countA = countB = countC = moneyWin = check = countAsk = moneyAux = 0;
         win = namePlayer = "";
         money.setText("0");
 
