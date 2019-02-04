@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
     private GroupB groupB;
     private GroupC groupC;
 
-    private LinearLayout L_Game, L_start, L_wellcome, L_instructions, L_answer, L_progress, L_end;
-    private TextView question, money, accumulated, T_instruc, player, T_progress, T_end;
+    private LinearLayout L_Game, L_start, L_wellcome, L_instructions, L_answer, L_progress, L_end,L_public1,L_public2;
+    private TextView question, money, accumulated, T_instruc, player, T_progress, T_end,t_a,t_b,t_c,t_d;
     private Button button1, button2, button3, button4, call, fivefive, public0, btn_run, btn_run2, btn_back, btn_end, continue0, btn_menu;
     private EditText name;
 
-    private int countA, countB, countC, moneyWin;
+    private int countA, countB, countC, moneyWin, countAsk, check;
     private String win, namePlayer;
 
     @Override
@@ -160,6 +160,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void inElse() {
+
+    }
+
     private void StarGame() {
         InitializeComponents();
         ViewWellcome();
@@ -194,32 +198,44 @@ public class MainActivity extends AppCompatActivity {
     }//Funcion para el hilo de los botones
 
     private void Verify(String data) {
+        if (check >= 15) {
+            ViewEnd();
+            return;
+        }//se hace la condicion en esta parte ya que  no funciono en ToAsk_C
         ThreadButton();
         ViewProgress();
         String data2 = data.substring(3, data.length());
+        String data3 = data2.substring(0, data.length() - 6);
+        System.out.println("data2: " + data2 + " data3: " + data3);
         if (win.equals(data2)) {
-            int moneyAux = 0;
-            if (countA < 5) {
-                moneyAux = groupA.GenerateMoney();
-                Toast.makeText(getBaseContext(),"generado en coutA "+moneyAux,Toast.LENGTH_SHORT).show();
-            } else if (countB < 5) {
-                moneyAux = groupB.GenerateMoney();
-                Toast.makeText(getBaseContext(),"generado en coutB "+moneyAux,Toast.LENGTH_SHORT).show();
 
-            } else if (countC < 5) {
-                moneyAux = groupC.GenerateMoney();
-                Toast.makeText(getBaseContext(),"generado en coutC "+moneyAux,Toast.LENGTH_SHORT).show();
+            if (check == 0) {
+                moneyWin = 0;
+            } else if (check == 3) {
+                moneyWin = 500;
+            } else if (check == 11) {
+                moneyWin = 125000;
             }
-            moneyWin = moneyWin + moneyAux;
+            check++;
+            if (countA <= 3) {
+                moneyWin = moneyWin + 100;
+            } else if (countA > 4 && countC <= 1) {
+                moneyWin = moneyWin * 2;
+            } else if (countC > 2) {
+                moneyWin = moneyWin * 2;
+            }
+
             money.setText("" + moneyWin);
             T_progress.setText("Respuesta correcta!!\n" +
-                    namePlayer + " ha ganado: " + moneyAux);
+                    namePlayer + " ha ganado: " + moneyWin);
         } else {
             ViewEnd();
         }
     }//Verifica la respuesta
 
     private void ViewProgress() {
+        L_public1.setVisibility(View.GONE);
+        L_public2.setVisibility(View.GONE);
         L_Game.setVisibility(View.GONE);
         L_progress.setVisibility(View.VISIBLE);
     }
@@ -231,6 +247,66 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Error en el tiempo del main: " + e.toString(), Toast.LENGTH_SHORT).show();
         }
     }//Funcion para dormir un hilo
+
+    private void FiveFive() {
+        Button btns[] = new Button[4];
+        btns[0] = button1;
+        btns[1] = button2;
+        btns[2] = button3;
+        btns[3] = button4;
+
+        for (int i = 0; i < 2; i++) {
+            String data = btns[i].getText().toString();
+            String data2 = data.substring(3, data.length());
+            if (!data2.equals(win)) {
+                btns[i].setEnabled(false);
+            }
+        }
+    }
+
+    private void Call() {
+        Button btns[] = new Button[4];
+        btns[0] = button1;
+        btns[1] = button2;
+        btns[2] = button3;
+        btns[3] = button4;
+
+        for (int i = 0; i < 4; i++) {
+            String data = btns[i].getText().toString();
+            String data2 = data.substring(3, data.length());
+            if (!data2.equals(win)) {
+                btns[i].setEnabled(false);
+            }
+        }
+    }
+
+    private void Public() {
+        L_public1.setVisibility(View.VISIBLE);
+        L_public2.setVisibility(View.VISIBLE);
+        TextView texts[] = new TextView[4];
+        texts[0] = t_a;
+        texts[1] = t_b;
+        texts[2] = t_c;
+        texts[3] = t_d;
+
+        Button btns[] = new Button[4];
+        btns[0] = button1;
+        btns[1] = button2;
+        btns[2] = button3;
+        btns[3] = button4;
+
+        int publi = 1;
+        for (int i = 0; i < 4; i++) {
+            String data = btns[i].getText().toString();
+            String data2 = data.substring(3, data.length());
+            if (!data2.equals(win)) {
+                texts[i].setText(publi * 10 + "%");
+                publi++;
+            } else {
+                texts[i].setText(40 + "%");
+            }
+        }
+    }
 
     public void onClick(View view) {
         if (view.getId() == R.id.button1) {
@@ -249,10 +325,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (view.getId() == R.id.fivefive) {
             fivefive.setEnabled(false);
+            FiveFive();
         } else if (view.getId() == R.id.call) {
             call.setEnabled(false);
+            Call();
         } else if (view.getId() == R.id.public0) {
             public0.setEnabled(false);
+            Public();
         }
 
         if (view.getId() == R.id.btn_run) {
@@ -283,6 +362,7 @@ public class MainActivity extends AppCompatActivity {
         T_end.setText("¡Juego terminado!\n" + namePlayer +
                 " tus ganancias son: " + moneyWin);
         L_progress.setVisibility(View.GONE);
+        L_Game.setVisibility(View.GONE);
         L_end.setVisibility(View.VISIBLE);
     }
 
@@ -294,6 +374,8 @@ public class MainActivity extends AppCompatActivity {
         this.L_answer = findViewById(R.id.L_answer);
         this.L_progress = findViewById(R.id.L_progress);
         this.L_end = findViewById(R.id.L_end);
+        this.L_public1 = findViewById(R.id.L_public1);
+        this.L_public2 = findViewById(R.id.L_public2);
 
         this.question = findViewById(R.id.question);
         this.accumulated = findViewById(R.id.accumulated);
@@ -302,6 +384,10 @@ public class MainActivity extends AppCompatActivity {
         this.player = findViewById(R.id.player);
         this.T_progress = findViewById(R.id.T_progress);
         this.T_end = findViewById(R.id.T_end);
+        this.t_a = findViewById(R.id.t_a);
+        this.t_b = findViewById(R.id.t_b);
+        this.t_c = findViewById(R.id.t_c);
+        this.t_d = findViewById(R.id.t_d);
 
         this.button1 = findViewById(R.id.button1);
         this.button2 = findViewById(R.id.button2);
@@ -322,11 +408,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void InitializeComponents() {
 
+        fivefive.setEnabled(true);
+        call.setEnabled(true);
+        public0.setEnabled(true);
+
         groupA = new GroupA();
         groupB = new GroupB();
         groupC = new GroupC();
 
-        countA = countB = countC = moneyWin = 0;
+        countA = countB = countC = moneyWin = check = countAsk = 0;
         win = namePlayer = "";
         money.setText("0");
 
@@ -341,6 +431,8 @@ public class MainActivity extends AppCompatActivity {
         L_Game.setVisibility(View.GONE);
         L_progress.setVisibility(View.GONE);
         L_end.setVisibility(View.GONE);
+        L_public1.setVisibility(View.GONE);
+        L_public2.setVisibility(View.GONE);
         L_answer.setBackgroundColor(Color.YELLOW);
     }//Los componentes son inicializados
 
