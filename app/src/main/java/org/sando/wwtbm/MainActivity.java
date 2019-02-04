@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private GroupB groupB;
     private GroupC groupC;
 
-    private LinearLayout L_Game, L_start, L_wellcome, L_instructions,L_answer,L_progress,L_end;
-    private TextView question, money, accumulated, T_instruc, player,T_progress,T_end;
-    private Button button1, button2, button3, button4, call, fivefive, public0, btn_run, btn_run2, btn_back,btn_end,continue0,btn_menu;
+    private LinearLayout L_Game, L_start, L_wellcome, L_instructions, L_answer, L_progress, L_end;
+    private TextView question, money, accumulated, T_instruc, player, T_progress, T_end;
+    private Button button1, button2, button3, button4, call, fivefive, public0, btn_run, btn_run2, btn_back, btn_end, continue0, btn_menu;
     private EditText name;
 
     private int countA, countB, countC, moneyWin;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ViewRunnigGame() {
-        player.append(namePlayer);
+        player.setText("Concursando: " + namePlayer);
         L_Game.setVisibility(View.VISIBLE);
         ToAsk_A();
     }
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
     public void ToAsk_C() {
         L_answer.setBackgroundColor(Color.RED);
         if (countC >= 5) {
-            ToAsk_A();
+            ViewEnd();
         } else {
             String questions[] = groupC.GenerateQuestion();
             question.setText(questions[0]);
@@ -170,51 +170,57 @@ public class MainActivity extends AppCompatActivity {
         L_wellcome.setVisibility(View.VISIBLE);
     }
 
-    private void ThreadButton(View button, int answer) {
-
-        /*if (answer == 1) {//segun el valor que reciba pintara el boton de un color
-            button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        } else if (answer == 2) {
-            button.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-        }
-
-        jugador1.setEnabled(false);//se desabilitan botones
-        jugador2.setEnabled(false);
+    private void ThreadButton() {
+        button1.setEnabled(false);
+        button2.setEnabled(false);
+        button3.setEnabled(false);
+        button4.setEnabled(false);
 
         new Thread(new Runnable() {
             public void run() {
-
-                Tiempo(1500);//dormimos medio segundo
+                Time(100);
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        jugador1.setEnabled(true);//habilitamos botones
-                        jugador2.setEnabled(true);
-                        //volvemos a los colores originales
-                        jugador1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                        jugador2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                        button1.setEnabled(true);
+                        button2.setEnabled(true);
+                        button3.setEnabled(true);
+                        button4.setEnabled(true);
                     }
                 });
             }
-        }).start();*/
+        }).start();
     }//Funcion para el hilo de los botones
 
     private void Verify(String data) {
-        L_Game.setVisibility(View.GONE);
-        L_progress.setVisibility(View.VISIBLE);
+        ThreadButton();
+        ViewProgress();
         String data2 = data.substring(3, data.length());
         if (win.equals(data2)) {
-            moneyWin++;
+            int moneyAux = 0;
+            if (countA < 5) {
+                moneyAux = groupA.GenerateMoney();
+                Toast.makeText(getBaseContext(),"generado en coutA "+moneyAux,Toast.LENGTH_SHORT).show();
+            } else if (countB < 5) {
+                moneyAux = groupB.GenerateMoney();
+                Toast.makeText(getBaseContext(),"generado en coutB "+moneyAux,Toast.LENGTH_SHORT).show();
+
+            } else if (countC < 5) {
+                moneyAux = groupC.GenerateMoney();
+                Toast.makeText(getBaseContext(),"generado en coutC "+moneyAux,Toast.LENGTH_SHORT).show();
+            }
+            moneyWin = moneyWin + moneyAux;
             money.setText("" + moneyWin);
             T_progress.setText("Respuesta correcta!!\n" +
-                    namePlayer+" ha ganado: "+moneyWin);
+                    namePlayer + " ha ganado: " + moneyAux);
         } else {
             ViewEnd();
         }
     }//Verifica la respuesta
 
-    private void ViewProgress(){
+    private void ViewProgress() {
+        L_Game.setVisibility(View.GONE);
         L_progress.setVisibility(View.VISIBLE);
     }
 
@@ -273,9 +279,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }//Funcion para el click del boton
 
-    private void ViewEnd(){
-        T_end.setText(namePlayer+" ha terminado el juego!!\n" +
-                "tus ganancias son: "+moneyWin);
+    private void ViewEnd() {
+        T_end.setText("¡Juego terminado!\n" + namePlayer +
+                " tus ganancias son: " + moneyWin);
         L_progress.setVisibility(View.GONE);
         L_end.setVisibility(View.VISIBLE);
     }
@@ -322,8 +328,9 @@ public class MainActivity extends AppCompatActivity {
 
         countA = countB = countC = moneyWin = 0;
         win = namePlayer = "";
+        money.setText("0");
 
-        T_instruc.setText("Para jugar:\n" +
+        T_instruc.setText("Instrucciones:\n" +
                 "1) Solo tendrás una oportunidad para jugar, en el primer intento fallido estarás fuera!\n" +
                 "2) Aparecerán preguntas en pantalla, solo debes oprimir el botón con la respuesta correcta\n" +
                 "3) Tendrás 3 ayudas para usar una única vez: cincuenta cincuenta, llamada a un amigo, ayuda del público\n" +

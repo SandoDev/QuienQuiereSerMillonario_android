@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class GroupC {
 
-    private int count;
+    private int count, money, count2;
     private ArrayList<String[]> questions;
 
     //El formato del array es: pregunta, respuesta ganadora, 3 respuestas falsas
@@ -13,7 +13,7 @@ public class GroupC {
     private String question1[] = {"¿Quién pinto 'El nacimiento de Venus'?", "Tizziano", "Miguel Ángel", "Botticelli", "Da Vinci"};
     private String question2[] = {"El aparato digestivo está formado por la boca, estómago, esófago, intestino delgado, intestino grueso y:", "Riñones", "Corazón", "Faringe", "Laringe"};
     private String question3[] = {"¿Cómo se reproduce una estrella de mar?", "Escisión", "Bipartición", "Meiosis", "Ósmosis"};
-    private String question4[] = {"El café que se produce en Colombia es el de tipo arábica, que se caracteriza por ser el más:", "Suave", "Acidulado", "Fuerte", "Rico"};
+    private String question4[] = {"El café que se produce en Colombia es el de tipo arábica, que se caracteriza por ser el más:", "Suave", "Acidulado", "Fuerte", "Amargo"};
     private String question5[] = {"El patólogo Manuel Elkin Patarroyo es famoso por los estudios de una vacuna sintética contra el:", "Paludismo o malaria.", "Ébola", "Dengue", "Chikungunya"};
     private String question6[] = {"¿Qué emperador dividió al imperio romano en oriente y occidente?", "Diocleciano", "Cadmo", "Rómulo", "Remo"};
     private String question7[] = {"¿A qué ejército pertenecían los centuriones?", "Romano", "Bizantino", "Ruso", "Griego"};
@@ -22,6 +22,7 @@ public class GroupC {
 
     public GroupC() {
         count = 10;
+        money = count2 = 0;
         questions = new ArrayList<>();
         questions.add(question0);
         questions.add(question1);
@@ -41,5 +42,21 @@ public class GroupC {
         questions.remove(index);//remueve del array la pregunta proxima a mostrar
         count--;
         return data;
+    }
+
+    public int GenerateMoney() {
+        count2++;
+        if (count2 == 1) {
+            money = 64000;
+        } else if (count2 == 2) {
+            money = 125000;
+        } else if (count2 == 3) {
+            money = 250000;
+        } else if (count2 == 4) {
+            money = 500000;
+        } else if (count2 == 5) {
+            money = 1000000;
+        }
+        return money;
     }
 }

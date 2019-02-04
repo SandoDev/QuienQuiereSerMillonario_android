@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class GroupB {
 
-    private int count;
+    private int count, money;
     private ArrayList<String[]> questions;
 
     //El formato del array es: pregunta, respuesta ganadora, 3 respuestas falsas
@@ -22,6 +22,7 @@ public class GroupB {
 
     public GroupB() {
         count = 10;
+        money = 1000;
         questions = new ArrayList<>();
         questions.add(question0);
         questions.add(question1);
@@ -41,5 +42,9 @@ public class GroupB {
         questions.remove(index);
         count--;
         return data;
+    }
+
+    public int GenerateMoney() {
+        return (money = money * 2);
     }
 }

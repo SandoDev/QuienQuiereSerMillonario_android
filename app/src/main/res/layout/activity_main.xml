@@ -10,7 +10,7 @@
         android:id="@+id/L_start"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/Azul"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -42,7 +42,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Bienvenido al juego!\nDigite su nombre y presione continuar"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/background_light"
                     android:textSize="24sp" />
 
                 <EditText
@@ -53,6 +53,7 @@
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="textPersonName"
+                    android:textColor="@android:color/background_light"
                     android:textSize="30sp" />
             </LinearLayout>
 
@@ -82,7 +83,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Para jugar: solo responde correctamente las preduntas en la pantalla, tendras 3 ayudas y acomularas dinero"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
 
             <LinearLayout
@@ -122,7 +123,7 @@
         android:layout_height="match_parent"
         android:background="@color/Azul"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/logo3"
@@ -206,9 +207,9 @@
         android:id="@+id/L_Game"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/Azul"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/L_question"
@@ -222,7 +223,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Concursando: "
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/background_light"
                 android:textSize="24sp" />
 
             <LinearLayout
@@ -237,7 +238,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Acumulado:"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/background_light"
                     android:textSize="24sp" />
 
                 <TextView
@@ -247,7 +248,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/background_light"
                     android:textSize="24sp" />
 
             </LinearLayout>
@@ -268,10 +269,10 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:background="@android:color/holo_blue_dark"
+                    android:background="@color/Azul"
                     android:gravity="center"
                     android:text="question"
-                    android:textColor="@android:color/black"
+                    android:textColor="@android:color/background_light"
                     android:textSize="30sp" />
 
             </LinearLayout>
