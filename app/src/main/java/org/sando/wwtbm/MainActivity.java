@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ViewRunnigGame() {
-        player.setText("Concursando: " + namePlayer);
+        player.setText("Juega: " + namePlayer);
         L_Game.setVisibility(View.VISIBLE);
         ToAsk_A();
     }
