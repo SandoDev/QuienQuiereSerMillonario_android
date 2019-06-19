@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ToAsk_B() {
-        L_answer.setBackgroundColor(Color.MAGENTA);
+        L_answer.setBackgroundColor(Color.rgb(255, 172, 79));
         if (countB >= 5) {
             ToAsk_C();
         } else {
@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
             int ans = new Random().nextInt(4);
             if (ans == 0) {
                 button1.setText("A: " + questions[1]);
-                //button1.append(questions[1]);
                 button2.setText("B: " + questions[2]);
                 button3.setText("C: " + questions[3]);
                 button4.setText("D: " + questions[4]);
@@ -126,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ToAsk_C() {
-        L_answer.setBackgroundColor(Color.RED);
+        L_answer.setBackgroundColor(Color.rgb(255, 94, 66));
         if (countC >= 5) {
             ViewEnd(1);
         } else {
@@ -201,8 +200,8 @@ public class MainActivity extends AppCompatActivity {
         ThreadButton();
         ViewProgress();
         String data2 = data.substring(3, data.length());
-        String data3 = data2.substring(0, data.length() - 6);
-        System.out.println("data2: " + data2 + " data3: " + data3);
+        //String data3 = data2.substring(0, data.length() - 6);
+        System.out.println("data2: " + data2);
         if (win.equals(data2)) {
 
             if (check == 0) {
@@ -357,6 +356,10 @@ public class MainActivity extends AppCompatActivity {
             L_Game.setVisibility(View.VISIBLE);
             L_progress.setVisibility(View.GONE);
             ToAsk_A();
+        }
+
+        if (view.getId() == R.id.btn_end2) {
+            ViewEnd(1);
         }
 
         if (view.getId() == R.id.btn_menu) {

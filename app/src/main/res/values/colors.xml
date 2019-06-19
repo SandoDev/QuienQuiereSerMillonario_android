@@ -2,9 +2,12 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#2841D6</color>
     <color name="groupA">#FFEB3B</color>
     <color name="groupB">#FF9800</color>
     <color name="groupC">#F44336</color>
-    <color name="Azul">#3F51B5</color>
+    <color name="Azul">#ED736FEC</color>
+    <color name="AzulRey">#3F51B5</color>
+    <color name="enables">#FFFFFF</color>
+    <color name="disable">#BF6B6D75</color>
 </resources>

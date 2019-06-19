@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@color/Azul"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/L_wellcome"
@@ -42,7 +42,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Bienvenido al juego!\nDigite su nombre y presione continuar"
-                    android:textColor="@android:color/background_light"
+                    android:textColor="@android:color/black"
                     android:textSize="24sp" />
 
                 <EditText
@@ -61,10 +61,13 @@
                 android:id="@+id/btn_run"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.2"
+                android:layout_margin="5dp"
+                android:layout_weight="1.3"
+                android:background="@color/AzulRey"
                 android:elevation="0dp"
                 android:onClick="onClick"
                 android:text="Continuar"
+                android:textColor="@color/enables"
                 android:textSize="24sp" />
 
         </LinearLayout>
@@ -83,7 +86,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Para jugar: solo responde correctamente las preduntas en la pantalla, tendras 3 ayudas y acomularas dinero"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="24sp" />
 
             <LinearLayout
@@ -96,19 +99,25 @@
                     android:id="@+id/btn_back"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:background="@color/AzulRey"
                     android:onClick="onClick"
                     android:text="Volver"
+                    android:textColor="@color/enables"
                     android:textSize="24sp" />
 
                 <Button
                     android:id="@+id/btn_run2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:background="@color/AzulRey"
                     android:elevation="0dp"
                     android:onClick="onClick"
                     android:text="continuar"
+                    android:textColor="@color/enables"
                     android:textSize="24sp" />
 
             </LinearLayout>
@@ -139,16 +148,19 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="30sp" />
 
         <Button
             android:id="@+id/btn_menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1.1"
+            android:background="@color/AzulRey"
             android:onClick="onClick"
             android:text="volver al menu"
+            android:textColor="@android:color/background_light"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -174,7 +186,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="TextView"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="30sp" />
 
         <LinearLayout
@@ -187,18 +199,24 @@
                 android:id="@+id/btn_continue"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:background="@color/AzulRey"
                 android:onClick="onClick"
                 android:text="continuar"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
 
             <Button
                 android:id="@+id/btn_end"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:background="@color/AzulRey"
                 android:onClick="onClick"
                 android:text="finalizar juego"
+                android:textColor="@android:color/white"
                 android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>
@@ -209,7 +227,7 @@
         android:layout_height="match_parent"
         android:background="@color/Azul"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/L_question"
@@ -218,13 +236,29 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/player"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Concursando: "
-                android:textColor="@android:color/background_light"
-                android:textSize="24sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Juega: "
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btn_end2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:onClick="onClick"
+                    android:text="Salir"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -238,7 +272,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Acumulado:"
-                    android:textColor="@android:color/background_light"
+                    android:textColor="@android:color/black"
                     android:textSize="24sp" />
 
                 <TextView
@@ -248,7 +282,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="0"
-                    android:textColor="@android:color/background_light"
+                    android:textColor="@android:color/black"
                     android:textSize="24sp" />
 
             </LinearLayout>
@@ -257,7 +291,8 @@
                 android:id="@+id/L_answer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/holo_orange_light"
+                android:layout_margin="@dimen/margin"
+                android:background="#DAECD773"
                 android:orientation="horizontal">
 
                 <TextView
@@ -269,11 +304,11 @@
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:background="@color/Azul"
+                    android:background="@color/AzulRey"
                     android:gravity="center"
                     android:text="question"
                     android:textColor="@android:color/background_light"
-                    android:textSize="30sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
@@ -290,8 +325,8 @@
                 android:id="@+id/L_help"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin"
                 android:layout_weight="5"
-                android:background="@android:color/holo_purple"
                 android:orientation="horizontal">
 
                 <TextView
@@ -350,19 +385,25 @@
                         android:id="@+id/button1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin"
                         android:layout_weight="1"
+                        android:background="@color/AzulRey"
                         android:onClick="onClick"
                         android:text="A: "
-                        android:textSize="18sp" />
+                        android:textColor="@color/boton_click"
+                        android:textSize="14sp" />
 
                     <Button
                         android:id="@+id/button2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin"
                         android:layout_weight="1"
+                        android:background="@color/AzulRey"
                         android:onClick="onClick"
                         android:text="B: "
-                        android:textSize="18sp" />
+                        android:textColor="@color/boton_click"
+                        android:textSize="14sp" />
                 </TableRow>
 
                 <LinearLayout
@@ -379,7 +420,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="TextView"
-                        android:textColor="@android:color/background_light" />
+                        android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/t_b"
@@ -388,7 +429,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="TextView"
-                        android:textColor="@android:color/background_light" />
+                        android:textColor="@android:color/black" />
                 </LinearLayout>
 
                 <TableRow
@@ -400,19 +441,25 @@
                         android:id="@+id/button3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin"
                         android:layout_weight="1"
+                        android:background="@color/AzulRey"
                         android:onClick="onClick"
                         android:text="C: "
-                        android:textSize="18sp" />
+                        android:textColor="@color/boton_click"
+                        android:textSize="14sp" />
 
                     <Button
                         android:id="@+id/button4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin"
                         android:layout_weight="1"
+                        android:background="@color/AzulRey"
                         android:onClick="onClick"
                         android:text="D: "
-                        android:textSize="18sp" />
+                        android:textColor="@color/boton_click"
+                        android:textSize="14sp" />
                 </TableRow>
 
                 <LinearLayout
@@ -429,7 +476,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="TextView"
-                        android:textColor="@android:color/background_light" />
+                        android:textColor="@android:color/black" />
 
                     <TextView
                         android:id="@+id/t_d"
@@ -438,7 +485,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="TextView"
-                        android:textColor="@android:color/background_light" />
+                        android:textColor="@android:color/black" />
                 </LinearLayout>
 
             </LinearLayout>
